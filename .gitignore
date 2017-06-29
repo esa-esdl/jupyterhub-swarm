@@ -1,0 +1,6 @@
+cookie_secret
+.env
+secrets/
+userlist
+.DS_Store
+.idea

@@ -1,0 +1,25 @@
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+FROM jupyterhub/jupyterhub-onbuild:0.7.2
+
+ENTRYPOINT [ "/bin/bash", "-c" ]
+
+RUN git clone https://github.com/CAB-LAB/SwarmSpawner.git
+WORKDIR SwarmSpawner
+CMD ["source /opt/conda/bin/activate"]
+RUN /opt/conda/bin/python setup.py install
+RUN /opt/conda/bin/pip install jupyterhub==0.7.* oauthenticator==0.5.*
+RUN conda list
+
+# Copy TLS certificate and key
+WORKDIR ..
+ENV SSL_CERT /srv/jupyterhub/secrets/jupyterhub.crt
+ENV SSL_KEY /srv/jupyterhub/secrets/jupyterhub.key
+COPY ./secrets/*.crt $SSL_CERT
+COPY ./secrets/*.key $SSL_KEY
+COPY cookie_secret /srv/jupyterhub
+
+RUN chmod 700 /srv/jupyterhub/secrets && \
+    chmod 600 /srv/jupyterhub/secrets/*
+
+COPY ./userlist /srv/jupyterhub/userlist

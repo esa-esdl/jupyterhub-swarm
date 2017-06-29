@@ -1,0 +1,36 @@
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+
+# JupyterHub docker-compose configuration file
+version: "3.0"
+
+services:
+  hub:
+    image: jupyterhub
+    env_file: .env
+    networks:
+        swarmnet:
+            aliases:
+                - jupyterhub
+    deploy:
+        placement:
+            constraints: [node.role == manager]
+    volumes:
+      # Bind Docker binary from host machine so we can invoke Docker commands
+      # from inside container
+      - "/usr/bin/docker:/usr/bin/docker:ro"
+      # Bind Docker socket on the host so we can connect to the daemon from
+      # within the container
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+      # Bind Docker volume on host for JupyterHub database and cookie secrets
+      - "data:/data"
+    ports:
+      - "443:443"
+    command: >
+      jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
+
+volumes:
+    data:
+    
+networks:
+    swarmnet:
