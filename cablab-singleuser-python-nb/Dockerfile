@@ -1,13 +1,6 @@
 From jupyterhub/singleuser
 MAINTAINER Brockmann Consult GmbH <http://www.brockmann-consult.de>
 
-USER root
-RUN useradd -m $NB_USER
-RUN usermod -u $NB_UID $NB_USER
-RUN groupmod -g $NB_GID $NB_USER
-
-USER $NB_USER
-
 # Install python modules
 RUN conda install --quiet --yes xarray dask
 RUN conda install -c cablab gridtools
