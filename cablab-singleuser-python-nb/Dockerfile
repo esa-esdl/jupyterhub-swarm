@@ -22,4 +22,4 @@ WORKDIR /srv/jupyterhub/cablab-core
 RUN python setup.py install
 
 USER $NB_USER
-WORKDIR $DOCKER_NOTEBOOK_DIR
+WORKDIR /home/jovyan/work
