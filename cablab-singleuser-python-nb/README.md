@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### Base Docker Image
 
-* [jupyterhub/singleuser](https://hub.docker.com/r/jupyterhub/singleuser/)
+* [jupyter/base-notebook:8f56e3c47fec](https://hub.docker.com/r/jupyter/base-notebook/)
 
 ### What's available on the Jupyter Notebook?
 
