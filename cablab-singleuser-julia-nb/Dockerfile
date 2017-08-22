@@ -1,5 +1,5 @@
-From cablab/singleuser-python:v4
-MAINTAINER Brockmann Consult GmbH <http://www.brockmann-consult.de>
+From cablab/python-nb:b449515
+LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install Julia
 USER root
@@ -16,7 +16,8 @@ RUN echo 'Pkg.clone("https://github.com/CAB-LAB/CABLAB.jl");Pkg.add("Patchwork")
 RUN echo 'Pkg.clone("https://github.com/milanflach/LIBSVM.jl");Pkg.checkout("LIBSVM","mutating_versions")' > installlibsvm.jl
 RUN echo 'Pkg.clone("https://github.com/milanflach/MultivariateAnomalies.jl")' > installmultivariate.jl
 RUN echo 'using Compose; using CABLAB; using CABLABPlots' > precomp.jl
-USER jovyan
+
+USER $NB_USER
 RUN export CABLAB_WORKDIR="/home/jovyan/work/tmp"
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
 RUN /srv/jupyterhub/julia/bin/julia installlibsvm.jl
@@ -24,5 +25,5 @@ RUN /srv/jupyterhub/julia/bin/julia installmultivariate.jl
 RUN /srv/jupyterhub/julia/bin/julia installcablab.jl
 RUN /srv/jupyterhub/julia/bin/julia precomp.jl
 
-USER jovyan
+USER $NB_USER
 WORKDIR /home/jovyan/work
