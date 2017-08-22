@@ -21,22 +21,31 @@ c.SwarmSpawner.jupyterhub_service_name = os.environ['JUPYTERHUB_SERVICE_NAME']
 c.SwarmSpawner.networks = [network_name]
 c.SwarmSpawner.notebook_dir = notebook_dir
 mounts = [
-    {
-        'type' : 'volume',
-        'source' : 'jupyter-{username}',
-        'target' : notebook_dir
+     {
+        'type' : 'bind',
+        'source' : '/eodc/private/esdc/notebook-container-data',
+        'target' : '/home/esdc'
     },
     {                                                      
-    'type' : 'bind',
-    'source' : '/data/cablab',
-    'target' : '/home/jovyan/work/datacube'
+    	'type' : 'bind',
+    	'source' : '/eodc/private/esdc/datacube/cablab-datacube-1.0.0',
+    	'target' : notebook_dir + '/datacube'
+    },
+    {
+        'type' : 'bind',
+        'source' : '/eodc/private/esdc/cablab-shared/notebooks',
+        'target' : notebook_dir + '/cablab-shared'
     }
 ]
 c.SwarmSpawner.container_spec = {
     # The command to run inside the service
     'args' : [notebook_spawn_cmd],
     'Image' : notebook_image,
-    'mounts' : mounts
+    'mounts' : mounts,
+# ideally the following parameters can be passed. At the moment produces an error when changing home directory,
+# look here https://github.com/jupyter/docker-stacks/issues/442
+#    'env': {'NB_UID': 52000, 'NB_GID': 52000, 'NB_USER': 'esdc', 'DOCKER_NOTEBOOK_DIR': notebook_dir},
+    'user' : 'root'
 }
 c.SwarmSpawner.start_timeout = 60 * 1
 c.SwarmSpawner.service_prefix = os.environ['JUPYTER_NB_PREFIX']
