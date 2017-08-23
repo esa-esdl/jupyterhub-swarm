@@ -4,9 +4,10 @@ LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 # Install R and R CABLAB
 USER root
 WORKDIR /srv/jupyterhub
-RUN echo "deb http://ftp5.gwdg.de/pub/misc/cran/bin/linux/debian jessie-cran3/" >> /etc/apt/sources.list
-RUN apt-key adv --keyserver keys.gnupg.net --recv-key 6212B7B7931C4BB16280BA1306F90DE5381BA480
-RUN apt-get update
+RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 
+RUN apt-get -y update
+RUN apt-get -y upgrade
 RUN apt-get -y install libcurl4-openssl-dev libxml2-dev libxslt-dev r-base-dev
 
 RUN git clone https://github.com/CAB-LAB/RCABLAB
