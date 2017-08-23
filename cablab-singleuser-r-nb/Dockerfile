@@ -1,5 +1,6 @@
-From cablab/singleuser-julia:v4
-MAINTAINER Brockmann Consult GmbH <http://www.brockmann-consult.de>
+From cablab/julia-nb:e5ddf96
+LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
+
 # Install R and R CABLAB
 USER root
 WORKDIR /srv/jupyterhub
@@ -20,5 +21,5 @@ RUN R -e "install.packages(c('repr', 'IRdisplay', 'crayon', 'pbdZMQ', 'devtools'
 RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
-USER jovyan
+USER $NB_USER
 WORKDIR /home/jovyan/work
