@@ -19,6 +19,7 @@ c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
 
 c.SwarmSpawner.jupyterhub_service_name = os.environ['JUPYTERHUB_SERVICE_NAME']
 c.SwarmSpawner.networks = [network_name]
+c.SwarmSpawner.placement = ["node.role == worker"]
 c.SwarmSpawner.notebook_dir = notebook_dir
 mounts = [
      {
@@ -47,7 +48,8 @@ c.SwarmSpawner.container_spec = {
 #    'env': {'NB_UID': 52000, 'NB_GID': 52000, 'NB_USER': 'esdc', 'DOCKER_NOTEBOOK_DIR': notebook_dir},
     'user' : 'root'
 }
-c.SwarmSpawner.start_timeout = 60 * 1
+c.SwarmSpawner.start_timeout = 60 * 5
+c.SwarmSpawner.http_timeout = 60 * 2
 c.SwarmSpawner.service_prefix = os.environ['JUPYTER_NB_PREFIX']
 
 # User containers will access hub by container name on the Docker network
