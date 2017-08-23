@@ -7,7 +7,7 @@ set -e
 # create a new user directory if not yet exists
 if [ ! -d "/home/esdc/${JPY_USER}" ]; then
     echo "creating a new user directory /home/esdc/${JPY_USER}"
-    mkdir /home/esdc/${JPY_USER}
+    su - $NB_USER -c "mkdir /home/esdc/${JPY_USER}"
 fi
 
 ln -sf /home/esdc/${JPY_USER} ${NOTEBOOK_DIR}/workspace
