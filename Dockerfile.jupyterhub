@@ -8,7 +8,7 @@ RUN git clone https://github.com/CAB-LAB/SwarmSpawner.git
 WORKDIR SwarmSpawner
 CMD ["source /opt/conda/bin/activate"]
 RUN /opt/conda/bin/python setup.py install
-RUN /opt/conda/bin/pip install jupyterhub==0.7.* oauthenticator==0.5.*
+RUN /opt/conda/bin/pip install jupyterhub==0.7.* oauthenticator==0.6.*
 RUN conda list
 
 # Copy TLS certificate and key
