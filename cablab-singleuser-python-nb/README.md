@@ -1,4 +1,4 @@
-## cablab/singleuser-python Dockerfile
+## cablab/python-nb Dockerfile
 
 
 This repository contains **Dockerfile** of a single user Jupyter notebook that is pre-configured with Cab-Lab python API.
@@ -10,7 +10,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### What's available on the Jupyter Notebook?
 
-* Python2 and Python3 bundled in Conda installation (more detailed on the included packages can be found in [scipy-notebook Dockerfile](https://github.com/jupyter/docker-stacks/blob/master/scipy-notebook/Dockerfile)) 
+* Python3 bundled in Conda installation (more detailed on the included packages can be found in the Dockerfile)
 
 * cablab-core (latest)
 
@@ -21,4 +21,4 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 1. Install [Docker](https://www.docker.com/).
  
-2. `docker build -t cablab/singleuser-python .`
+2. `docker build -t cablab/python-nb .`
