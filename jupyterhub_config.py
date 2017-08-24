@@ -29,13 +29,15 @@ mounts = [
     },
     {                                                      
     	'type' : 'bind',
-    	'source' : '/eodc/private/esdc/datacube/cablab-datacube-1.0.0',
-    	'target' : notebook_dir + '/datacube'
+    	'source' : '/eodc/private/esdc/datacube',
+    	'target' : notebook_dir + '/datacube',
+	'read_only': True
     },
     {
         'type' : 'bind',
         'source' : '/eodc/private/esdc/cablab-shared/notebooks',
-        'target' : notebook_dir + '/cablab-shared'
+        'target' : notebook_dir + '/cablab-shared',
+	'read_only': True
     }
 ]
 c.SwarmSpawner.container_spec = {
