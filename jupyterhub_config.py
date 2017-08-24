@@ -14,6 +14,9 @@ network_name = os.environ['DOCKER_NETWORK_NAME']
 notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
 notebook_image = os.environ['DOCKER_NOTEBOOK_IMAGE']
 notebook_spawn_cmd = os.environ['DOCKER_SPAWN_CMD']
+user_workspaces_dir = os.environ['USER_WORKSPACES_DIR']
+datacube_dir = os.environ['DATACUBE_DIR']
+sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
 
 c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
 
@@ -24,18 +27,18 @@ c.SwarmSpawner.notebook_dir = notebook_dir
 mounts = [
      {
         'type' : 'bind',
-        'source' : '/eodc/private/esdc/notebook-container-data',
+        'source' : user_workspaces_dir,
         'target' : '/home/esdc'
     },
     {                                                      
     	'type' : 'bind',
-    	'source' : '/eodc/private/esdc/datacube',
+    	'source' : datacube_dir,
     	'target' : notebook_dir + '/datacube',
 	'read_only': True
     },
     {
         'type' : 'bind',
-        'source' : '/eodc/private/esdc/cablab-shared/notebooks',
+        'source' : sample_notebooks_dir,
         'target' : notebook_dir + '/cablab-shared',
 	'read_only': True
     }
