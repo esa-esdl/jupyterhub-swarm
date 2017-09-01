@@ -1,4 +1,4 @@
-From cablab/python-nb:b449515
+From cablab/python-nb:f2218c9
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install Julia
