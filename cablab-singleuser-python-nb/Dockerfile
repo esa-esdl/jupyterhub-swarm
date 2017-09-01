@@ -12,7 +12,7 @@ USER $NB_USER
 # Install python modules
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
-    ipywidgets=6.0* \
+    ipywidgets=7.0* \
     pandas \
     numexpr \
     matplotlib=2.0* \
