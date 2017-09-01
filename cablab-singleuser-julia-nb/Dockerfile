@@ -13,15 +13,13 @@ RUN PATH="/srv/jupyterhub/julia/bin:$PATH"
 WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.add("IJulia")' > IJulia.jl
 RUN echo 'Pkg.clone("https://github.com/CAB-LAB/CABLAB.jl");Pkg.add("Patchwork");Pkg.checkout("Patchwork");Pkg.clone("https://github.com/CAB-LAB/CABLABPlots.jl")' > installcablab.jl
-RUN echo 'Pkg.clone("https://github.com/milanflach/LIBSVM.jl");Pkg.checkout("LIBSVM","mutating_versions")' > installlibsvm.jl
-RUN echo 'Pkg.clone("https://github.com/milanflach/MultivariateAnomalies.jl")' > installmultivariate.jl
+RUN echo 'Pkg.clone("https://github.com/milanflach/MultivariateAnomalies.jl",Pkg.checkout("MultivariateAnomalies.jl","julia_v0.5"))' > installmultivariate.jl
 RUN echo 'Pkg.add("PlotlyJS");Pkg.add("GR")' > plotpackages.jl
 RUN echo 'using Compose; using CABLAB; using PlotlyJS; using GR; using CABLABPlots' > precomp.jl
 
 USER $NB_USER
 RUN export CABLAB_WORKDIR="/home/jovyan/work/tmp"
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
-RUN /srv/jupyterhub/julia/bin/julia installlibsvm.jl
 RUN /srv/jupyterhub/julia/bin/julia installmultivariate.jl
 RUN /srv/jupyterhub/julia/bin/julia installcablab.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
