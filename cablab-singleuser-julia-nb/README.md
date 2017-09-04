@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### Base Docker Image
 
-* [cablab/python-nb:b449515](https://hub.docker.com/r/cablab/python-nb/)
+* [cablab/python-nb:f2218c9](https://hub.docker.com/r/cablab/python-nb/)
 
 ### What's available on the Jupyter Notebook?
 

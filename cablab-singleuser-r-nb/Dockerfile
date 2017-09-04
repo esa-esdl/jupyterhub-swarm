@@ -1,4 +1,4 @@
-From cablab/julia-nb:e5ddf96
+From cablab/julia-nb:695e8dd
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install R and R CABLAB
