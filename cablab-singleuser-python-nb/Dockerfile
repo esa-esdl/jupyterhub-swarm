@@ -13,6 +13,7 @@ USER $NB_USER
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
     ipywidgets=7.0* \
+    jupyterlab \
     pandas \
     numexpr \
     matplotlib=2.0* \
