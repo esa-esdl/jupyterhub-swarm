@@ -1,4 +1,4 @@
-From jupyter/base-notebook:8f56e3c47fec
+From jupyter/base-notebook:c19283de5a6f
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 ADD start.sh /usr/local/bin/start.sh
@@ -9,11 +9,12 @@ RUN sudo apt-get install -y git
 
 USER $NB_USER
 
+RUN conda list
+
 # Install python modules
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
     ipywidgets=7.0* \
-    jupyterlab \
     pandas \
     numexpr \
     matplotlib=2.0* \
