@@ -23,7 +23,7 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     scikit-learn \
     scikit-image \
     cython=0.25* \
-    numba=0.34* \
+    numba \
     bokeh \
     hdf5 \
     h5py \
