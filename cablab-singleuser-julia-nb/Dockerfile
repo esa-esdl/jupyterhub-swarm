@@ -1,4 +1,4 @@
-From cablab/python-nb:f2218c9
+From quay.io/esdc/singleuser-python-nb:0.1
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install Julia
