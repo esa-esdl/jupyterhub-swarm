@@ -33,6 +33,8 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     basemap=1.0.7 \
     ffmpeg=2.8.6 \
     netcdf4=1.2*
+    
+RUN conda list
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
