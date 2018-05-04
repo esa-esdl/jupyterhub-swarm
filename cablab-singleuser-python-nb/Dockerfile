@@ -1,7 +1,7 @@
 From jupyter/base-notebook:c19283de5a6f
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
-ADD start.sh /usr/local/bin/start.sh
+#ADD start.sh /usr/local/bin/start.sh
 
 USER root
 RUN sudo apt-get update
