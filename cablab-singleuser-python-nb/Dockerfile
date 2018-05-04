@@ -37,6 +37,9 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
 # Activate ipywidgets extension in the environment that runs the notebook server
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
+# Install Jupyterlab extension
+RUN jupyter labextension install @jupyterlab/hub-extension
+
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
