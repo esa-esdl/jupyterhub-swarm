@@ -1,4 +1,4 @@
-From jupyter/base-notebook:c19283de5a6f
+From jupyter/base-notebook:160eb5183ace
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 ADD start2.sh /usr/local/bin/start.sh

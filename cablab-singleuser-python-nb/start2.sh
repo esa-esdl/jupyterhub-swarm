@@ -2,6 +2,9 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
+# This is a modified script from https://github.com/jupyter/docker-stacks/blob/master/base-notebook/start.sh
+# The difference to the original script is the creation of user-specific directory inside of /home/esdl/
+
 set -e
 
 # Exec the specified command or fall back on bash
