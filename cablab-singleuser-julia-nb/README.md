@@ -1,4 +1,4 @@
-## cablab/julia-nb Dockerfile
+## quay.io/esdc/julia-nb Dockerfile
 
 
 This repository contains **Dockerfile** of a single user Jupyter notebook that is pre-configured with Cab-Lab Python and Julia APIs.
@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### Base Docker Image
 
-* [cablab/python-nb:f2218c9](https://hub.docker.com/r/cablab/python-nb/)
+* [quay.io/esdc/singleuser-python-nb:0.3](https://quay.io/repository/esdc/singleuser-python-nb?tab=tags/)
 
 ### What's available on the Jupyter Notebook?
 
@@ -23,4 +23,4 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 1. Install [Docker](https://www.docker.com/).
 
-2. `docker build -t cablab/julia-nb .`
+2. `docker build -t quay.io/esdc/singleuser-julia-nb .` or `docker pull quay.io/esdc/singleuser-julia-nb`

@@ -21,4 +21,4 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 1. Install [Docker](https://www.docker.com/).
  
-2. `docker build -t cablab/python-nb .`
+2. `docker build -t quay.io/esdc/singleuser-python-nb .` or `docker pull quay.io/esdc/singleuser-python-nb`
