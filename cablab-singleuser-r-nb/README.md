@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### Base Docker Image
 
-* [cablab/julia-nb:75aca80](https://hub.docker.com/r/cablab/julia-nb/)
+* [quay.io/esdc/singleuser-julia-nb:0.3](https://quay.io/repository/esdc/singleuser-julia-nb/)
 
 ### What's available on the Jupyter Notebook?
 
@@ -25,4 +25,4 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 1. Install [Docker](https://www.docker.com/).
  
-2. `docker build -t cablab/r-nb .`
+2. `docker build -t esdc/r-nb .` or `docker pull quay.io/esdc/singleuser-r-nb`
