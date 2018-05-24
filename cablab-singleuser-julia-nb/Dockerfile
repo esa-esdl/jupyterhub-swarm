@@ -1,4 +1,4 @@
-From quay.io/esdc/singleuser-python-nb:0.3
+From quay.io/esdc/singleuser-python-nb:0.4
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install Julia
