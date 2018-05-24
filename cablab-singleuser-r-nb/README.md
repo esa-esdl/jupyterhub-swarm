@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter notebook that i
 
 ### Base Docker Image
 
-* [quay.io/esdc/singleuser-julia-nb:0.3](https://quay.io/repository/esdc/singleuser-julia-nb/)
+* [quay.io/esdc/singleuser-julia-nb:0.4](https://quay.io/repository/esdc/singleuser-julia-nb/)
 
 ### What's available on the Jupyter Notebook?
 
