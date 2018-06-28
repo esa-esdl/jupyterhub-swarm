@@ -12,15 +12,15 @@ RUN mkdir julia && tar xzf julia-0.6.2-linux-x86_64.tar.gz -C julia --strip-comp
 RUN PATH="/srv/jupyterhub/julia/bin:$PATH"
 WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.add("IJulia")' > IJulia.jl
-RUN echo 'Pkg.clone("https://github.com/CAB-LAB/CABLAB.jl");Pkg.clone("https://github.com/CAB-LAB/CABLABPlots.jl")' > installcablab.jl
+RUN echo 'Pkg.clone("https://github.com/esa-esdl/ESDL.jl");Pkg.clone("https://github.com/esa-esdl/ESDLPlots.jl")' > installesdl.jl
 RUN echo 'Pkg.add("PlotlyJS");Pkg.add("GR")' > plotpackages.jl
-RUN echo 'using Compose; using CABLAB; using PlotlyJS; using GR; using CABLABPlots' > precomp.jl
+RUN echo 'using Compose; using ESDL; using PlotlyJS; using GR; using ESDLPlots' > precomp.jl
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
-RUN export CABLAB_WORKDIR="/home/jovyan/tmp"
+RUN export ESDL_WORKDIR="/home/jovyan/tmp"
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
-RUN /srv/jupyterhub/julia/bin/julia installcablab.jl
+RUN /srv/jupyterhub/julia/bin/julia installesdl.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
 
 WORKDIR /srv/jupyterhub/julia
