@@ -18,7 +18,7 @@ RUN echo 'using Compose; using CABLAB; using PlotlyJS; using GR; using CABLABPlo
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
-RUN export CABLAB_WORKDIR="/home/jovyan/work/tmp"
+RUN export CABLAB_WORKDIR="/home/jovyan/tmp"
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
 RUN /srv/jupyterhub/julia/bin/julia installcablab.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
@@ -27,4 +27,4 @@ WORKDIR /srv/jupyterhub/julia
 RUN /srv/jupyterhub/julia/bin/julia precomp.jl
 
 USER $NB_USER
-WORKDIR /home/jovyan/work
+WORKDIR /home/jovyan
