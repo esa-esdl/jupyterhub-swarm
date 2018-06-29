@@ -45,9 +45,9 @@ USER root
 
 # Install cablab
 WORKDIR /srv/jupyterhub
-RUN git clone https://github.com/CAB-LAB/cablab-core.git
-WORKDIR /srv/jupyterhub/cablab-core
+RUN git clone https://github.com/esa-esdl/esdl-core.git
+WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
 
 USER $NB_USER
-WORKDIR /home/jovyan/work
+WORKDIR /home/jovyan
