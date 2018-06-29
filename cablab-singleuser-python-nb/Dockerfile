@@ -1,4 +1,4 @@
-From jupyter/base-notebook:160eb5183ace
+From jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 ADD start2.sh /usr/local/bin/start.sh
@@ -43,7 +43,7 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 
 USER root
 
-# Install cablab
+# Install esdl
 WORKDIR /srv/jupyterhub
 RUN git clone https://github.com/esa-esdl/esdl-core.git
 WORKDIR /srv/jupyterhub/esdl-core
