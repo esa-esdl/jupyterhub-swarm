@@ -10,7 +10,7 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install libcurl4-openssl-dev libxml2-dev libxslt-dev r-base-dev
 
-RUN git clone https://github.com/CAB-LAB/RCABLAB
+RUN git clone https://github.com/esa-esdl/RCABLAB
 RUN wget https://cran.r-project.org/src/contrib/Archive/RNetCDF/RNetCDF_1.6.1-2.tar.gz
 RUN R CMD INSTALL RNetCDF_1.6.1-2.tar.gz
 WORKDIR /srv/jupyterhub/RCABLAB
