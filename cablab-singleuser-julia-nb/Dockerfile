@@ -1,4 +1,4 @@
-From quay.io/esdc/singleuser-python-nb:k8s
+From quay.io/esdc/singleuser-python-nb:0.5
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install Julia
@@ -27,4 +27,4 @@ WORKDIR /srv/jupyterhub/julia
 RUN /srv/jupyterhub/julia/bin/julia precomp.jl
 
 USER $NB_USER
-WORKDIR /home/jovyan
+WORKDIR /home/jovyan/work
