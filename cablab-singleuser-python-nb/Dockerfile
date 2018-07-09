@@ -50,4 +50,4 @@ WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
 
 USER $NB_USER
-WORKDIR /home/jovyan
+WORKDIR /home/jovyan/work
