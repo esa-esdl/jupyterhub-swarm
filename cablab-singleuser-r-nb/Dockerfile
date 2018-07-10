@@ -1,4 +1,4 @@
-From quay.io/esdc/singleuser-julia-nb:k8s
+From quay.io/esdc/singleuser-julia-nb:0.5
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 
 # Install R and R CABLAB
@@ -23,4 +23,4 @@ RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
-WORKDIR /home/jovyan
+WORKDIR /home/jovyan/work
