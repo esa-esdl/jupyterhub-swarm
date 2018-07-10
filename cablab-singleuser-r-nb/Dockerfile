@@ -4,11 +4,12 @@ LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 # Install R and R CABLAB
 USER root
 WORKDIR /srv/jupyterhub
-RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+RUN echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/" >> /etc/apt/sources.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install libcurl4-openssl-dev libxml2-dev libxslt-dev r-base-dev
+# install R based on the instruction here https://askubuntu.com/questions/1032842/r-rstudio-installation-script-for-ubuntu-18-04-tdd-packages
+RUN apt-get -y install gdebi libssl-dev libcurl4-openssl-dev libopenblas-dev libxml2-dev libxslt-dev r-base r-base-dev
 
 RUN git clone https://github.com/esa-esdl/RCABLAB
 RUN wget https://cran.r-project.org/src/contrib/Archive/RNetCDF/RNetCDF_1.6.1-2.tar.gz
