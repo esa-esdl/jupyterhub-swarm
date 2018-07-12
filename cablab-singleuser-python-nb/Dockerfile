@@ -26,6 +26,7 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     hdf5 \
     h5py \
     xarray \
+    zarr \
     dask \
     gridtools  \
     basemap=1.0.7 \
