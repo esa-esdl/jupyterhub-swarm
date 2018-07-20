@@ -10,9 +10,10 @@ RUN sudo apt-get install -y git
 USER $NB_USER
 
 # Install python modules
-RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
+RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba -c base\
     nomkl \
     ipywidgets=7.0* \
+    widgetsnbextension \
     pandas \
     numexpr \
     matplotlib=2.0* \
@@ -37,6 +38,9 @@ RUN conda list
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+
+# Install and activate interactive widget in jupyterlab
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
