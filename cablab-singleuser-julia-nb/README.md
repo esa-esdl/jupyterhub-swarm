@@ -1,22 +1,22 @@
 ## quay.io/esdc/julia-nb Dockerfile
 
 
-This repository contains **Dockerfile** of a single user Jupyter notebook that is pre-configured with Cab-Lab Python and Julia APIs.
+This repository contains **Dockerfile** of a single user Jupyter Lab that is pre-configured with ESDL Python and Julia APIs.
 
 
 ### Base Docker Image
 
-* [quay.io/esdc/singleuser-python-nb:0.4](https://quay.io/repository/esdc/singleuser-python-nb?tab=tags/)
+* [quay.io/esdc/singleuser-python-nb:0.5.1](https://quay.io/repository/esdc/singleuser-python-nb?tab=tags/)
 
-### What's available on the Jupyter Notebook?
+### What's available on the Jupyter Lab?
 
 * Python3 bundled in Conda installation (more detailed on the included packages can be found in the Dockerfile)
 
-* cablab-core (latest)
+* esdl-core (latest)
 
 * gridtools (latest)
 
-* Julia 0.5.0
+* Julia 0.6.2
 
 
 ### Installation
