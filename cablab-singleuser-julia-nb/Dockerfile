@@ -13,8 +13,8 @@ RUN PATH="/srv/jupyterhub/julia/bin:$PATH"
 WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.add("IJulia")' > IJulia.jl
 RUN echo 'Pkg.clone("https://github.com/esa-esdl/ESDL.jl");Pkg.clone("https://github.com/esa-esdl/ESDLPlots.jl")' > installesdl.jl
-RUN echo 'Pkg.add("PlotlyJS");Pkg.add("GR")' > plotpackages.jl
-RUN echo 'using Compose; using ESDL; using PlotlyJS; using GR; using ESDLPlots' > precomp.jl
+RUN echo 'Pkg.add("ECharts");Pkg.add("PyPlot");Pkg.add("PlotlyJS");Pkg.add("GR");Pkg.add("ProgressMeter");Pkg.clone("https://github.com/slundberg/PmapProgressMeter.jl")' > plotpackages.jl
+RUN echo 'using Compose, ESDL, PlotlyJS, GR, ESDLPlots, ProgressMeter, PmapProgressMeter' > precomp.jl
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
