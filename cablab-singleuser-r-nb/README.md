@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of a single user Jupyter Lab that is pre
 
 ### Base Docker Image
 
-* [quay.io/esdc/singleuser-julia-nb:0.5.1](https://quay.io/repository/esdc/singleuser-julia-nb/)
+* [quay.io/esdc/singleuser-julia-nb:0.5.2](https://quay.io/repository/esdc/singleuser-julia-nb/)
 
 ### What's available on the Jupyter Lab?
 
