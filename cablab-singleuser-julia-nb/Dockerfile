@@ -28,4 +28,3 @@ RUN /srv/jupyterhub/julia/bin/julia precomp.jl
 
 USER $NB_USER
 WORKDIR /home/jovyan/work
-ENV ESDL_WORKDIR /home/jovyan/work
