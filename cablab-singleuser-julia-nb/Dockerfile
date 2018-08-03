@@ -14,11 +14,11 @@ WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.add("IJulia")' > IJulia.jl
 RUN echo 'Pkg.clone("https://github.com/esa-esdl/ESDL.jl");Pkg.clone("https://github.com/esa-esdl/ESDLPlots.jl")' > installesdl.jl
 RUN echo 'Pkg.add("ECharts");Pkg.add("PyPlot");Pkg.add("PlotlyJS");Pkg.add("GR");Pkg.add("ProgressMeter");Pkg.clone("https://github.com/slundberg/PmapProgressMeter.jl")' > plotpackages.jl
-RUN echo 'using Compose, ESDL, GR, ESDLPlots, ProgressMeter, PmapProgressMeter' > precomp.jl
+RUN echo 'using Compose, ESDL, GR, ESDLPlots, ProgressMeter, PmapProgressMeter, ECharts, PyPlot' > precomp.jl
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
-RUN export ESDL_WORKDIR="/home/jovyan/tmp"
+ENV ESDL_WORKDIR /home/jovyan/tmp
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
 RUN /srv/jupyterhub/julia/bin/julia installesdl.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
