@@ -1,0 +1,37 @@
+name: esdl-nb
+channels:
+  - conda-forge
+  - cablab
+  - numba
+dependencies:
+  - basemap=1.1.0
+  - bokeh=0.12.15
+  - conda=4.3.34
+  - conda-env=2.6.0
+  - dask=0.17.4
+  - ffmpeg=2.8.6
+  - gridtools=0.4.1
+  - h5netcdf=0.5.1
+  - h5py=2.7.1
+  - hdf4=4.2.13
+  - hdf5=1.8.18
+  - ipywidgets=7.0.5
+  - jupyter_client=5.2.3
+  - jupyter_core=4.4.0
+  - jupyterhub=0.9.0
+  - jupyterlab=0.31.12
+  - jupyterlab_launcher=0.10.5
+  - matplotlib=2.0.2
+  - netcdf4=1.2.9
+  - numba=0.35.0
+  - numexpr=2.6.5
+  - numpy=1.13.3
+  - pandas=0.22.0
+  - python=3.6.3
+  - scikit-image=0.13.1
+  - scikit-learn=0.19.1
+  - scipy=1.0.1
+  - seaborn=0.8.1
+  - widgetsnbextension=3.0.8
+  - xarray=0.10.3
+  - zarr=2.2.0
