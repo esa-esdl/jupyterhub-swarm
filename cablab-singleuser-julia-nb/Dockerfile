@@ -18,7 +18,7 @@ RUN echo 'using Compose, ESDL, GR, ESDLPlots, ProgressMeter, PmapProgressMeter, 
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
-RUN export ESDL_WORKDIR="/home/jovyan/tmp"
+ENV ESDL_WORKDIR /home/jovyan/tmp
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
 RUN /srv/jupyterhub/julia/bin/julia installesdl.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
