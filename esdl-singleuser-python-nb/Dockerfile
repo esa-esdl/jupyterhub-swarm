@@ -1,5 +1,6 @@
-From jupyter/base-notebook:03b897d05f16
+FROM jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
+LABEL version="0.5.3"
 
 ADD start2.sh /usr/local/bin/start.sh
 
@@ -32,7 +33,9 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     gridtools  \
     basemap=1.0.7 \
     ffmpeg=2.8.6 \
-    netcdf4=1.2*
+    netcdf4=1.2* \
+    pyproj \
+    datashader
     
 RUN conda list
 
@@ -43,6 +46,7 @@ RUN conda list
 RUN jupyter lab clean
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 RUN jupyter labextension list
+RUN jupyter labextension install jupyterlab_bokeh
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/

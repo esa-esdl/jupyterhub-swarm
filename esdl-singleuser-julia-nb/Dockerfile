@@ -1,5 +1,6 @@
-From quay.io/esdc/singleuser-python-nb:0.5.2
+FROM quay.io/esdc/singleuser-python-nb:0.5.3
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
+LABEL version="0.5.3"
 
 # Install Julia
 USER root
