@@ -60,5 +60,12 @@ RUN git clone https://github.com/esa-esdl/esdl-core.git
 WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
 
+
+RUN sudo apt-get install -y unzip 
+WORKDIR /tmp
+RUN wget https://obs-sdk-download.obs.eu-de.otc.t-systems.com/eSDK_Storage_OBS_V2.1.21_Python.zip
+RUN unzip eSDK_Storage_OBS_V2.1.21_Python.zip; \
+        cd src && python setup.py install
+
 USER $NB_USER
 WORKDIR /home/jovyan/work
