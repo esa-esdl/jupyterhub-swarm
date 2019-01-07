@@ -32,7 +32,8 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     gridtools  \
     basemap=1.0.7 \
     ffmpeg=2.8.6 \
-    netcdf4=1.2*
+    netcdf4=1.2* \
+    pyproj
     
 RUN conda list
 

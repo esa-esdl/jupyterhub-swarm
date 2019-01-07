@@ -12,6 +12,7 @@ c = get_config()
 
 network_name = os.environ['DOCKER_NETWORK_NAME']
 notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
+#notebook_dir = '/home/' + os.environ.get('NB_USER') + '/work'
 notebook_image = os.environ['DOCKER_NOTEBOOK_IMAGE']
 notebook_spawn_cmd = os.environ['DOCKER_SPAWN_CMD']
 user_workspaces_dir = os.environ['USER_WORKSPACES_DIR']
@@ -19,6 +20,14 @@ datacube_dir = os.environ['DATACUBE_DIR']
 sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
 
 c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
+
+#c.JupyterHub.services = [
+#    {
+#        'name': 'cull-idle',
+#        'admin': True,
+#        'command': 'python3 cull_idle_servers.py --timeout=300'.split(),
+#    }
+#]
 
 c.SwarmSpawner.jupyterhub_service_name = os.environ['JUPYTERHUB_SERVICE_NAME']
 c.SwarmSpawner.networks = [network_name]
@@ -39,7 +48,7 @@ mounts = [
     {
         'type' : 'bind',
         'source' : sample_notebooks_dir,
-        'target' : notebook_dir + '/cablab-shared',
+        'target' : notebook_dir + '/shared-nb',
 	'read_only': True
     }
 ]
@@ -51,11 +60,20 @@ c.SwarmSpawner.container_spec = {
 # ideally the following parameters can be passed. At the moment produces an error when changing home directory,
 # look here https://github.com/jupyter/docker-stacks/issues/442
 #    'env': {'NB_UID': 52000, 'NB_GID': 52000, 'NB_USER': 'esdc', 'DOCKER_NOTEBOOK_DIR': notebook_dir},
+    'env' : {'JUPYTER_ENABLE_LAB':1},
     'user' : 'root'
+}
+
+c.SwarmSpawner.resource_spec = {
+	'mem_limit' : int(32 * 1000 * 1000 * 1000),
+	'mem_reservation' : int(8 * 1000 * 1000 * 1000)
 }
 c.SwarmSpawner.start_timeout = 60 * 5
 c.SwarmSpawner.http_timeout = 60 * 2
 c.SwarmSpawner.service_prefix = os.environ['JUPYTER_NB_PREFIX']
+
+c.MappingKernelManager.cull_idle_timeout = 200
+c.NotebookApp.shutdown_no_activity_timeout = 100
 
 # User containers will access hub by container name on the Docker network
 c.JupyterHub.hub_ip = '0.0.0.0'

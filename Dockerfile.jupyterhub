@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyterhub/jupyterhub-onbuild:0.7.2
+FROM jupyterhub/jupyterhub-onbuild:0.8.1
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 
@@ -8,7 +8,9 @@ RUN git clone https://github.com/CAB-LAB/SwarmSpawner.git
 WORKDIR SwarmSpawner
 CMD ["source /opt/conda/bin/activate"]
 RUN /opt/conda/bin/python setup.py install
-RUN /opt/conda/bin/pip install jupyterhub==0.7.* oauthenticator==0.6.*
+RUN /opt/conda/bin/pip install jupyterhub==0.8.1 oauthenticator==0.7.3
+#RUN conda install tornado dateutil
+COPY cull_idle_servers.py /srv/jupyterhub
 RUN conda list
 
 # Copy TLS certificate and key
