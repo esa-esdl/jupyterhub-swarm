@@ -6,7 +6,7 @@ ADD start2.sh /usr/local/bin/start.sh
 
 USER root
 RUN sudo apt-get update
-RUN sudo apt-get upgrade
+RUN sudo apt-get upgrade -y
 RUN sudo apt-get install -y git unzip
 
 USER $NB_USER
