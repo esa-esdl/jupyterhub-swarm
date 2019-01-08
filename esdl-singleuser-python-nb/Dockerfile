@@ -6,7 +6,8 @@ ADD start2.sh /usr/local/bin/start.sh
 
 USER root
 RUN sudo apt-get update
-RUN sudo apt-get install -y git
+RUN sudo apt-get upgrade
+RUN sudo apt-get install -y git unzip
 
 USER $NB_USER
 
@@ -61,7 +62,6 @@ WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
 
 
-RUN sudo apt-get install -y unzip 
 WORKDIR /tmp
 RUN wget https://obs-sdk-download.obs.eu-de.otc.t-systems.com/eSDK_Storage_OBS_V2.1.21_Python.zip
 RUN unzip eSDK_Storage_OBS_V2.1.21_Python.zip; \
