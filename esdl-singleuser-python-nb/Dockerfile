@@ -1,12 +1,11 @@
 FROM jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
-LABEL version="0.5.3"
+LABEL version="0.5.4"
 
 ADD start2.sh /usr/local/bin/start.sh
 
 USER root
-RUN sudo apt-get update
-RUN sudo apt-get upgrade -y
+RUN sudo apt-get update && sudo apt-get upgrade -y
 RUN sudo apt-get install -y git unzip
 
 USER $NB_USER
