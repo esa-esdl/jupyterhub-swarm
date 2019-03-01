@@ -14,6 +14,7 @@ USER $NB_USER
 RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
+    geopandas \
     ipywidgets \
     widgetsnbextension \
     pandas \
