@@ -12,7 +12,7 @@ RUN git clone https://github.com/esa-esdl/SwarmSpawner.git
 WORKDIR SwarmSpawner
 CMD ["source /opt/conda/bin/activate"]
 RUN /opt/conda/bin/python setup.py install
-RUN /opt/conda/bin/pip install oauthenticator==0.7.3 #jupyterhub-dummyauthenticator
+RUN /opt/conda/bin/pip install oauthenticator==0.7.3 jupyterhub-dummyauthenticator git+https://github.com/jupyterhub/wrapspawner
 #RUN conda install tornado dateutil
 COPY cull_idle_servers.py /srv/jupyterhub
 RUN conda list
