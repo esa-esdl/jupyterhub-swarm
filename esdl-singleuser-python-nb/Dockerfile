@@ -11,6 +11,7 @@ RUN sudo apt-get install -y git unzip apt-utils
 USER $NB_USER
 
 # Install python modules
+RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
     ipywidgets=7.2.1 \
