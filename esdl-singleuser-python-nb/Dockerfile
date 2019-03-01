@@ -14,7 +14,7 @@ USER $NB_USER
 RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
-    ipywidgets=7.2.1 \
+    ipywidgets \
     widgetsnbextension \
     pandas \
     numexpr \
@@ -23,7 +23,7 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     seaborn \
     scikit-learn \
     scikit-image \
-    cython=0.25* \
+    cython \
     numba \
     bokeh \
     hdf5 \
@@ -32,9 +32,9 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     zarr \
     dask \
     gridtools  \
-    basemap=1.0.7 \
-    ffmpeg=2.8.6 \
-    netcdf4=1.2* \
+    basemap \
+    ffmpeg \
+    netcdf4 \
     pyproj \
     datashader
     
