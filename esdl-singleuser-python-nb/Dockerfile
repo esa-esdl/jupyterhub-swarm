@@ -6,11 +6,14 @@ ADD start2.sh /usr/local/bin/start.sh
 
 USER root
 RUN sudo apt-get update
-RUN sudo apt-get install -y git
+RUN sudo apt-get install -y git wget unzip
 
 USER $NB_USER
 
 # Install python modules
+RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict
+RUN conda info
+
 RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
     ipywidgets=7.2.1 \
@@ -38,6 +41,11 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     datashader
     
 RUN conda list
+
+WORKDIR /tmp
+RUN wget https://obs-sdk-download.obs.eu-de.otc.t-systems.com/eSDK_Storage_OBS_V2.1.21_Python.zip
+RUN unzip eSDK_Storage_OBS_V2.1.21_Python.zip; \
+	cd src && python setup.py install
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
