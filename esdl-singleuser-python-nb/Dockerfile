@@ -19,7 +19,7 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     widgetsnbextension \
     pandas \
     numexpr \
-    matplotlib=2.0* \
+    matplotlib \
     scipy \
     seaborn \
     scikit-learn \
