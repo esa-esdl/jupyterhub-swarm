@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook:03b897d05f16
+#FROM jupyter/base-notebook:03b897d05f16
+FROM jupyter/base-notebook:latest
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 LABEL version="0.5.5"
 
@@ -11,7 +12,7 @@ RUN sudo apt-get install -y git unzip apt-utils
 USER $NB_USER
 
 # Install python modules
-RUN conda config --add channels conda-forge 
+RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict 
 RUN conda install --quiet --yes -c nodefaults -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
     geopandas \
@@ -61,6 +62,8 @@ WORKDIR /srv/jupyterhub
 RUN git clone https://github.com/esa-esdl/esdl-core.git
 WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
+
+RUN conda config --set channel_priority false
 
 WORKDIR /tmp
 
