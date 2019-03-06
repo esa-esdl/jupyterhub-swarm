@@ -16,7 +16,6 @@ WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.resolve();Pkg.add("IJulia")' > IJulia.jl
 RUN echo 'Pkg.add("ECharts");Pkg.add("PyPlot");Pkg.add("PlotlyJS");Pkg.add("GR");Pkg.add("ProgressMeter");Pkg.clone("https://github.com/slundberg/PmapProgressMeter.jl")' > plotpackages.jl
 RUN echo 'using Compose, ESDL, GR, ESDLPlots, ProgressMeter, PmapProgressMeter, ECharts, PyPlot' > precomp.jl
-RUN echo 'Pkg.build("NetCDF")' > netcdf.jl
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER

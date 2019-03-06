@@ -85,10 +85,10 @@ c.JupyterHub.ssl_key = os.environ['SSL_KEY']
 c.JupyterHub.ssl_cert = os.environ['SSL_CERT']
 
 # Authenticate users with GitHub OAuth
-# c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
-# c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
+c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
+c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
 
-c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
+#c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
 
 # Persist hub data on volume mounted inside container
 data_dir = os.environ.get('DATA_VOLUME_CONTAINER', '/data')
@@ -111,5 +111,3 @@ with open(os.path.join(pwd, 'userlist')) as f:
         if len(parts) > 1 and parts[1] == 'admin':
             admin.add(name)
 
-
-c.template_vars = {'announcement': 'some_text'}
