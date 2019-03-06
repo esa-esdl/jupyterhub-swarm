@@ -1,4 +1,5 @@
-FROM quay.io/esdc/singleuser-python-nb:0.5.5
+# FROM quay.io/esdc/singleuser-python-nb:0.5.5
+FROM tt1
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 LABEL version="0.5.5"
 
@@ -15,6 +16,7 @@ WORKDIR /srv/jupyterhub/julia
 RUN echo 'Pkg.resolve();Pkg.add("IJulia")' > IJulia.jl
 RUN echo 'Pkg.add("ECharts");Pkg.add("PyPlot");Pkg.add("PlotlyJS");Pkg.add("GR");Pkg.add("ProgressMeter");Pkg.clone("https://github.com/slundberg/PmapProgressMeter.jl")' > plotpackages.jl
 RUN echo 'using Compose, ESDL, GR, ESDLPlots, ProgressMeter, PmapProgressMeter, ECharts, PyPlot' > precomp.jl
+RUN echo 'Pkg.build("NetCDF")' > netcdf.jl
 
 WORKDIR /srv/jupyterhub/julia
 USER $NB_USER
@@ -30,6 +32,7 @@ RUN git checkout newjulia06
 WORKDIR /srv/jupyterhub/julia
 
 ENV ESDL_WORKDIR /home/jovyan/tmp
+RUN rm ~/.condarc
 RUN /srv/jupyterhub/julia/bin/julia IJulia.jl
 RUN /srv/jupyterhub/julia/bin/julia plotpackages.jl
 RUN /srv/jupyterhub/julia/bin/julia precomp.jl

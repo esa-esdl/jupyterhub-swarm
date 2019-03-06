@@ -1,5 +1,4 @@
-#FROM jupyter/base-notebook:03b897d05f16
-FROM jupyter/base-notebook:latest
+FROM jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 LABEL version="0.5.5"
 
@@ -62,8 +61,6 @@ WORKDIR /srv/jupyterhub
 RUN git clone https://github.com/esa-esdl/esdl-core.git
 WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
-
-RUN conda config --set channel_priority false
 
 WORKDIR /tmp
 
