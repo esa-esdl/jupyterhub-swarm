@@ -72,6 +72,7 @@ c.SwarmSpawner.start_timeout = 60 * 5
 c.SwarmSpawner.http_timeout = 60 * 2
 c.SwarmSpawner.service_prefix = os.environ['JUPYTER_NB_PREFIX']
 
+
 c.MappingKernelManager.cull_idle_timeout = 200
 c.NotebookApp.shutdown_no_activity_timeout = 100
 
@@ -86,6 +87,8 @@ c.JupyterHub.ssl_cert = os.environ['SSL_CERT']
 # Authenticate users with GitHub OAuth
 c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
+
+#c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
 
 # Persist hub data on volume mounted inside container
 data_dir = os.environ.get('DATA_VOLUME_CONTAINER', '/data')
@@ -107,3 +110,4 @@ with open(os.path.join(pwd, 'userlist')) as f:
         whitelist.add(name)
         if len(parts) > 1 and parts[1] == 'admin':
             admin.add(name)
+
