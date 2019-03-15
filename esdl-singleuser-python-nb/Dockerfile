@@ -20,6 +20,7 @@ RUN conda install --quiet --yes -c nodefaults -c conda-forge -c cablab -c anacon
     pandas \
     numexpr \
     matplotlib \
+    rasterio \
     scipy \
     seaborn \
     scikit-learn \
