@@ -1,14 +1,18 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyterhub/jupyterhub-onbuild:0.8.1
+FROM jupyterhub/jupyterhub-onbuild:0.9.4
+
+MAINTAINER info@earthsystemdatalab.net
+LABEL version='0.5.5'
+
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 
-RUN git clone https://github.com/CAB-LAB/SwarmSpawner.git
+RUN git clone https://github.com/esa-esdl/SwarmSpawner.git
 WORKDIR SwarmSpawner
 CMD ["source /opt/conda/bin/activate"]
 RUN /opt/conda/bin/python setup.py install
-RUN /opt/conda/bin/pip install jupyterhub==0.8.1 oauthenticator==0.7.3
+RUN /opt/conda/bin/pip install oauthenticator==0.7.3 jupyterhub-dummyauthenticator
 #RUN conda install tornado dateutil
 COPY cull_idle_servers.py /srv/jupyterhub
 RUN conda list

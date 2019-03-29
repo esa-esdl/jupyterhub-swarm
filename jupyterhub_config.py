@@ -3,7 +3,8 @@
 
 # Configuration file for JupyterHub
 import os
-
+import sys
+ 
 c = get_config()
 
 # We rely on environment variables to configure JupyterHub so that we
@@ -21,13 +22,13 @@ sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
 
 c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
 
-#c.JupyterHub.services = [
-#    {
-#        'name': 'cull-idle',
-#        'admin': True,
-#        'command': 'python3 cull_idle_servers.py --timeout=300'.split(),
-#    }
-#]
+c.JupyterHub.services = [
+    {
+        'name': 'cull-idle',
+        'admin': True,
+        'command': [sys.executable, 'cull_idle_servers.py', '--timeout=7200'],
+    }
+]
 
 c.SwarmSpawner.jupyterhub_service_name = os.environ['JUPYTERHUB_SERVICE_NAME']
 c.SwarmSpawner.networks = [network_name]
@@ -66,7 +67,7 @@ c.SwarmSpawner.container_spec = {
 
 c.SwarmSpawner.resource_spec = {
 	'mem_limit' : int(32 * 1000 * 1000 * 1000),
-	'mem_reservation' : int(8 * 1000 * 1000 * 1000)
+	'mem_reservation' : int(16 * 1000 * 1000 * 1000)
 }
 c.SwarmSpawner.start_timeout = 60 * 5
 c.SwarmSpawner.http_timeout = 60 * 2
