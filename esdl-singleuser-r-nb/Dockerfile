@@ -1,5 +1,4 @@
-#FROM quay.io/esdc/singleuser-julia-nb:0.5.5
-FROM tt2
+FROM quay.io/esdc/singleuser-julia-nb:0.5.5
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 LABEL version="0.5.5"
 
