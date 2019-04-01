@@ -24,33 +24,6 @@ RUN R -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ'
 RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
-# Install python modules
-RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
-    nomkl \
-    ipywidgets=7.2.1 \
-    widgetsnbextension \
-    pandas \
-    numexpr \
-    matplotlib=2.0* \
-    scipy \
-    seaborn \
-    scikit-learn \
-    scikit-image \
-    cython=0.25* \
-    numba \
-    bokeh \
-    hdf5 \
-    h5py \
-    xarray \
-    zarr \
-    dask \
-    gridtools  \
-    basemap=1.0.7 \
-    ffmpeg=2.8.6 \
-    netcdf4=1.2* \
-    pyproj \
-    datashader
-
 
 USER $NB_USER
 WORKDIR /home/jovyan/work
