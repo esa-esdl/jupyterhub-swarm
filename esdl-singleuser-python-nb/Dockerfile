@@ -1,6 +1,6 @@
 FROM jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
-LABEL version="0.5.5"
+LABEL version="0.5.6"
 
 ADD start2.sh /usr/local/bin/start.sh
 
