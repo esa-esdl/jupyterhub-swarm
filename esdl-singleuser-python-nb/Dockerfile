@@ -38,7 +38,14 @@ RUN conda install --quiet --yes -c nodefaults -c conda-forge -c cablab -c anacon
     ffmpeg \
     netcdf4 \
     pyproj \
-    datashader
+    datashader \
+    regionmask \
+    cartopy \
+    pysheds \
+    pytorch \
+    tensorflow \
+    geopandas \
+    s3fs
     
 RUN conda list
 

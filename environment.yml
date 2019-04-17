@@ -35,5 +35,4 @@ dependencies:
   - widgetsnbextension=3.0.8
   - xarray=0.10.3
   - zarr=2.2.0
-  - bokek
   - datashader
