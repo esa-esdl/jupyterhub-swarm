@@ -44,7 +44,8 @@ RUN conda install --quiet --yes -c nodefaults -c conda-forge -c cablab -c anacon
     pysheds \
     pytorch \
     tensorflow \
-    geopandas
+    geopandas \
+    s3fs
     
 RUN conda list
 
