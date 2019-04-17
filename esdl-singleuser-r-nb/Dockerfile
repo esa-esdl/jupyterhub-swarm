@@ -1,6 +1,6 @@
-FROM quay.io/esdc/singleuser-julia-nb:0.5.6
+FROM quay.io/esdc/singleuser-julia-nb:0.5.7
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
-LABEL version="0.5.6"
+LABEL version="0.5.7"
 
 # Install R and R CABLAB
 USER root
