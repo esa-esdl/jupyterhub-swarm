@@ -1,4 +1,4 @@
-FROM quay.io/esdc/singleuser-python-nb:latest
+FROM quay.io/esdc/singleuser-python-nb:0.5.7
 
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
 LABEL version="0.5.7"
