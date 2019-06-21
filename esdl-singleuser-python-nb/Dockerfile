@@ -1,31 +1,31 @@
 FROM jupyter/base-notebook:03b897d05f16
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
-LABEL version="0.5.4"
+LABEL version="0.5.5"
 
 ADD start2.sh /usr/local/bin/start.sh
 
 USER root
 RUN sudo apt-get update
-RUN sudo apt-get install -y git wget unzip
+RUN sudo apt-get install -y git unzip apt-utils
 
 USER $NB_USER
 
 # Install python modules
-RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict
-RUN conda info
-
-RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
+RUN conda update conda && conda config --add channels conda-forge && conda config --set channel_priority strict 
+RUN conda install --quiet --yes -c nodefaults -c conda-forge -c cablab -c anaconda -c numba \
     nomkl \
-    ipywidgets=7.2.1 \
+    geopandas \
+    ipywidgets \
     widgetsnbextension \
     pandas \
     numexpr \
-    matplotlib=2.0* \
+    matplotlib \
+    rasterio \
     scipy \
     seaborn \
     scikit-learn \
     scikit-image \
-    cython=0.25* \
+    cython \
     numba \
     bokeh \
     hdf5 \
@@ -34,9 +34,9 @@ RUN conda install --quiet --yes -c conda-forge -c cablab -c anaconda -c numba \
     zarr \
     dask \
     gridtools  \
-    basemap=1.0.7 \
-    ffmpeg=2.8.6 \
-    netcdf4=1.2* \
+    basemap \
+    ffmpeg \
+    netcdf4 \
     pyproj \
     datashader
     
@@ -68,11 +68,7 @@ RUN git clone https://github.com/esa-esdl/esdl-core.git
 WORKDIR /srv/jupyterhub/esdl-core
 RUN python setup.py install
 
-
 WORKDIR /tmp
-RUN wget https://obs-sdk-download.obs.eu-de.otc.t-systems.com/eSDK_Storage_OBS_V2.1.21_Python.zip
-RUN unzip eSDK_Storage_OBS_V2.1.21_Python.zip; \
-        cd src && python setup.py install
 
 USER $NB_USER
 WORKDIR /home/jovyan/work
