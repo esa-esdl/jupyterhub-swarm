@@ -1,7 +1,7 @@
-FROM quay.io/esdc/singleuser-python-nb:0.5.5
+FROM quay.io/esdc/singleuser-python-nb:0.5.7
 
 LABEL maintainer="Brockmann Consult GmbH <http://www.brockmann-consult.de>"
-LABEL version="0.5.5"
+LABEL version="0.5.7"
 
 # Install Julia
 USER root
@@ -48,12 +48,9 @@ USER $NB_USER
 ENV ESDL_WORKDIR /home/jovyan/tmp
 ENV JULIA_DEPOT_PATH /home/jovyan/julia_depots
 WORKDIR /srv/jupyterhub/julia-1.1
-RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot https://github.com/gdkrmr/WeightedOnlineStats.jl"'
-WORKDIR /home/jovyan/julia_depots/registries/
-RUN git clone https://git.bgc-jena.mpg.de/fgans/BGIRegistries
-WORKDIR /srv/jupyterhub/julia-1.1
-RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg; pkg"add ESDL"'
-RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add SentinelMissings ZarrNative ESDLPlots"'
+RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot CSV"'
+RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl#v0.7 https://github.com/esa-esdl/ESDLPlots.jl"'
+RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add Zarr"'
 RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"precompile"'
 RUN /srv/jupyterhub/julia-1.1/bin/julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
 #The following could work when we have the cube in object store, so that unit tests can generate snoop file
