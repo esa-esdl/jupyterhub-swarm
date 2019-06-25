@@ -4,6 +4,8 @@ USER root
 RUN sudo apt-get update && sudo apt-get upgrade -y
 RUN sudo apt-get install -y git unzip apt-utils vim
 
+ADD start.sh /usr/local/bin/start.sh
+
 USER $NB_USER
 
 RUN conda install --quiet --yes -c pytorch -c bc-dev \
