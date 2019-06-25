@@ -41,8 +41,7 @@ run-hooks /usr/local/bin/start-notebook.d
 # create a new user directory if not yet exists
 if [ ! -d "/home/esdc/${JPY_USER}" ]; then
     echo "creating a new user directory /home/esdc/${JPY_USER}"
-    mkdir /home/esdc/${JPY_USER}
-    chown ${NB_USER}.users /home/esdc/${JPY_USER}
+    sudo ${NB_USER} -c "mkdir /home/esdc/${JPY_USER}"
 fi
 
 ln -sf /home/esdc/${JPY_USER} ${NOTEBOOK_DIR}/workspace
