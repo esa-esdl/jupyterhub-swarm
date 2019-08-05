@@ -19,6 +19,7 @@ notebook_spawn_cmd = os.environ['DOCKER_SPAWN_CMD']
 user_workspaces_dir = os.environ['USER_WORKSPACES_DIR']
 datacube_dir = os.environ['DATACUBE_DIR']
 sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
+esdl_hub_mode = os.environ['ESDL_HUB_MODE']
 
 c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
 
@@ -34,6 +35,7 @@ c.SwarmSpawner.jupyterhub_service_name = os.environ['JUPYTERHUB_SERVICE_NAME']
 c.SwarmSpawner.networks = [network_name]
 c.SwarmSpawner.placement = ["node.role == worker"]
 c.SwarmSpawner.notebook_dir = notebook_dir
+
 mounts = [
      {
         'type' : 'bind',
@@ -66,10 +68,8 @@ c.SwarmSpawner.container_spec = {
 }
 
 c.SwarmSpawner.resource_spec = {
-	'mem_limit' : int(32 * 1000 * 1000 * 1000),
-	'mem_reservation' : int(16 * 1000 * 1000 * 1000),
-        'cpu_limit' : 400,
-        'cpu_reservation' : 800, # (int) – CPU reservation in units of 10^9 CPU shares
+	'mem_limit' : int(8 * 1000 * 1000 * 1000),
+	'mem_reservation' : int(4 * 1000 * 1000 * 1000),
 }
 c.SwarmSpawner.start_timeout = 60 * 5
 c.SwarmSpawner.http_timeout = 60 * 2
@@ -88,10 +88,12 @@ c.JupyterHub.ssl_key = os.environ['SSL_KEY']
 c.JupyterHub.ssl_cert = os.environ['SSL_CERT']
 
 # Authenticate users with GitHub OAuth
-c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
-c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
 
-#c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
+if esdl_hub_mode == 'dev':
+    c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
+else:
+    c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
+    c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
 
 # Persist hub data on volume mounted inside container
 data_dir = os.environ.get('DATA_VOLUME_CONTAINER', '/data')
