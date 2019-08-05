@@ -3,7 +3,7 @@
 FROM jupyterhub/jupyterhub-onbuild:1.0.0
 
 MAINTAINER info@earthsystemdatalab.net
-LABEL version='0.6.0'
+LABEL version='0.6.1'
 
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
