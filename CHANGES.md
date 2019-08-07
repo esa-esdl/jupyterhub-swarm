@@ -1,3 +1,11 @@
+## Version 0.6.1
+
+* Set PYTHONPATH and PYTHONUSERBASE to $HOME/work/workspace/.local allowing persistent user installs
+
+## Version 0.6.0
+
+* Using the data science notebook now
+
 ## Version 0.5.2
 
 * Julia - new packages ECharts, PyPlot, ProgressMeter
