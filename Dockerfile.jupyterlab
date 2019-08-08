@@ -11,7 +11,7 @@ ADD start.sh /usr/local/bin/start.sh
 
 USER $NB_USER
 
-RUN conda install --quiet --yes -c pytorch -c bc-dev -c conda-forge\
+RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
     cudatoolkit=9.0 \
     geopandas \
     # widgetsnbextension \
