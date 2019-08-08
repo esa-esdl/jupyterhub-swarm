@@ -22,7 +22,7 @@ RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
     basemap \
     ffmpeg \
     netcdf4 \
-    pyproj 
+    pyproj
 
 RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
     datashader \
