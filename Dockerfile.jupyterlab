@@ -42,10 +42,14 @@ RUN pip install git+https://github.com/esa-esdl/esdl-core.git
 
 WORKDIR /home/jovyan/work
 
-RUN julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot CSV"'
+RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
+RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
+
+RUN julia -e 'using Pkg;pkg"add WebIO ColorTypes MultivariateStats PackageCompiler ProgressMeter GR ECharts PyPlot CSV";pkg"build WebIO";pkg"precompile"'
 RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
 RUN julia -e 'using Pkg;pkg"add Zarr"'
 RUN julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
+RUN julia -e 'using WebIO'
 
 ENV ESDL_WORKDIR /home/jovyan/tmp
 
