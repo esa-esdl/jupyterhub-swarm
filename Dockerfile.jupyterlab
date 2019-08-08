@@ -38,6 +38,8 @@ RUN pip install git+https://github.com/esa-esdl/esdl-core.git
 
 WORKDIR /home/jovyan/work
 
+WORKDIR /home/jovyan/work
+
 RUN julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot CSV"'
 RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
 RUN julia -e 'using Pkg;pkg"add Zarr"'
@@ -51,4 +53,3 @@ RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
-
