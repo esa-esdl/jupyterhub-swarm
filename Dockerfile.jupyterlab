@@ -10,14 +10,16 @@ ADD start.sh /usr/local/bin/start.sh
 
 USER $NB_USER
 
-RUN conda install --quiet --yes -c pytorch -c bc-dev \
+RUN conda install --quiet --yes -c bc-dev \
     cudatoolkit=9.0 \
     geopandas \
     # widgetsnbextension \
     rasterio \
     xarray \
     zarr \
-    gridtools \
+    gridtools
+
+RUN conda install --quiet --yes -c pytorch -c bc-dev \
     basemap \
     ffmpeg \
     netcdf4 \
@@ -30,7 +32,6 @@ RUN conda install --quiet --yes -c pytorch -c bc-dev \
     torchvision \
     tensorflow \
     s3fs
-
 
 RUN conda list
 RUN pip install git+https://github.com/esa-esdl/esdl-core.git
