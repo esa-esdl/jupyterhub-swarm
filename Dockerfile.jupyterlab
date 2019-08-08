@@ -4,7 +4,7 @@ MAINTAINER dev@brockmann-consult.de
 
 USER $NB_USER
 
-RUN conda install --quiet --yes -c pytorch -c bc-dev \
+RUN conda install --yes -c pytorch -c bc-dev \
     pysheds \
     pytorch \
     torchvision \
