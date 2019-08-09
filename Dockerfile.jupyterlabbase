@@ -27,4 +27,13 @@ RUN conda install --yes -c pytorch -c bc-dev \
     regionmask \
     cartopy
 
+RUN conda install --yes -c pytorch -c bc-dev \
+    pysheds \
+    pytorch \
+    torchvision \
+    tensorflow \
+    s3fs
+
 RUN conda list
+
+RUN pip install git+https://github.com/esa-esdl/esdl-core.git

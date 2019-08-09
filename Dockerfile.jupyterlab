@@ -4,17 +4,6 @@ MAINTAINER dev@brockmann-consult.de
 
 USER $NB_USER
 
-RUN conda install --yes -c pytorch -c bc-dev \
-    pysheds \
-    pytorch \
-    torchvision \
-    tensorflow \
-    s3fs
-
-RUN conda list
-
-RUN pip install git+https://github.com/esa-esdl/esdl-core.git
-
 WORKDIR /home/jovyan/work
 
 RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
