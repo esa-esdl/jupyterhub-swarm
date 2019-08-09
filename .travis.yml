@@ -4,9 +4,9 @@ services:
   - docker
 
 before_install:
-  - docker build -t quay.io/esdc/esdl_single_user_lab:0.6.1 -f Dockerfile.jupyterlab .
-#  - docker run -d quay.io/esdc/esdl_single_user_lab:0.6.1 'jupyter lab'
-#  - docker ps -a
+  - docker build -t quay.io/esdc/esdl_single_user_lab:$TRAVIS_BRANCH -f Dockerfile.jupyterlab .
+  - docker run -d quay.io/esdc/esdl_single_user_lab:$TRAVIS_BRANCH 'jupyter lab'
+  - docker ps -a
 
 script:
   - ls
@@ -15,5 +15,3 @@ deploy:
   skip_cleanup: true
   provider: script
   script: bash docker_push.sh
-  on:
-    branch: alicja-25-synchronizing-jupyterhub-versions

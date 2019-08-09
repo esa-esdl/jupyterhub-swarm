@@ -11,52 +11,52 @@ ADD start.sh /usr/local/bin/start.sh
 
 USER $NB_USER
 
-#RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
-#    cudatoolkit=9.0 \
-#    geopandas \
+RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
+    cudatoolkit=9.0 \
+    geopandas \
     # widgetsnbextension \
-#    rasterio \
-#    xarray \
-#    zarr \
-#    gridtools \
-#    basemap \
-#    ffmpeg \
-#    netcdf4 \
-#    pyproj
+    rasterio \
+    xarray \
+    zarr \
+    gridtools \
+    basemap \
+    ffmpeg \
+    netcdf4 \
+    pyproj
 
-#RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
-#    datashader \
-#    regionmask \
-#    cartopy \
-#    pysheds \
-#    pytorch \
-#    torchvision \
-#    tensorflow \
-#    s3fs \
-#    r-rgdal \
-#    r-rgeos
+RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
+    datashader \
+    regionmask \
+    cartopy \
+    pysheds \
+    pytorch \
+    torchvision \
+    tensorflow \
+    s3fs \
+    r-rgdal \
+    r-rgeos
 
 
-#RUN conda list
-#RUN pip install git+https://github.com/esa-esdl/esdl-core.git
+RUN conda list
+RUN pip install git+https://github.com/esa-esdl/esdl-core.git
 
-#WORKDIR /home/jovyan/work
+WORKDIR /home/jovyan/work
 
-#RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
-#RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
+RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
+RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
 
-#RUN julia -e 'using Pkg;pkg"add WebIO ColorTypes MultivariateStats PackageCompiler ProgressMeter GR ECharts PyPlot CSV";pkg"build WebIO";pkg"precompile"'
-#RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
-#RUN julia -e 'using Pkg;pkg"add Zarr"'
-#RUN julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
-#RUN julia -e 'using WebIO'
+RUN julia -e 'using Pkg;pkg"add WebIO ColorTypes MultivariateStats PackageCompiler ProgressMeter GR ECharts PyPlot CSV";pkg"build WebIO";pkg"precompile"'
+RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
+RUN julia -e 'using Pkg;pkg"add Zarr"'
+RUN julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
+RUN julia -e 'using WebIO'
 
-#ENV ESDL_WORKDIR /home/jovyan/tmp
+ENV ESDL_WORKDIR /home/jovyan/tmp
 
-#USER root
-#RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
-#RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
-#RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
+USER root
+RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
+RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
 
