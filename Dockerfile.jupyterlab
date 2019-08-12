@@ -6,6 +6,10 @@ USER $NB_USER
 
 WORKDIR /home/jovyan/work
 
+USER root
+RUN ln -s /opt/julia-1.1.0/bin/julia /usr/local/bin/julia
+
+USER $NB_USER
 RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
 RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
 
@@ -20,15 +24,6 @@ USER root
 RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
 RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
-
-USER $NB_USER
-
-FROM alpine:latest
-
-USER root
-
-COPY --from=baseimage /opt/*  /opt/
-RUN ln -s /opt/julia-1.1.0/bin/julia /usr/local/bin/julia
 
 USER $NB_USER
 
