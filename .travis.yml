@@ -4,6 +4,7 @@ services:
   - docker
 
 before_install:
+  - git diff --exit-code --name-only
   - LABBASE_CHANGED=$(git diff --exit-code --name-only | grep labbase)
   - if [ $LABBASE_CHANGED = "Dockerfile.jupyterlabbase" ]
     then
