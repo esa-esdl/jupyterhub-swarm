@@ -4,8 +4,7 @@ services:
   - docker
 
 before_install:
-  - echo $$TRAVIS_COMMIT_RANGE
-  - "$(echo $TRAVIS_COMMIT_RANGE | grep labbase)"
+  - bash set_basemodule_changed.sh
   - "
     if [ $LABBASE_CHANGED = 'Dockerfile.jupyterlabbase' ]
     then
