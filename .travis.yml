@@ -4,9 +4,10 @@ services:
   - docker
 
 before_install:
-  - grep --version
-  - LABBASE_CHANGED=$(git diff --exit-code --name-only | grep labbase)
-  - if [ $LABBASE_CHANGED = "Dockerfile.jupyterlabbase" ]
+  - |
+    LABBASE_CHANGED=$(git diff --exit-code --name-only | grep labbase)
+  - |
+    if [ $LABBASE_CHANGED = "Dockerfile.jupyterlabbase" ]
     then
       BASE_IMAGE_VERSION=$(grep base_image_version Dockerfile.jupyterlabbase | awk -F '=' '{print $2}')
       docker build -t quay.io/esdc/esdl_single_user_labbase:${BASE_IMAGE_VERSION} -f Dockerfile.jupyterlabbase .
@@ -19,7 +20,7 @@ script:
   - ls
 
 before_deploy:
-  - LABBASE_CHANGED=$(git diff --exit-code --name-only | fgrep labbase)
+  - LABBASE_CHANGED=$(git diff --exit-code --name-only | grep labbase)
 deploy:
   - provider: script
     script: bash docker_push_jupyterlabbase.sh
