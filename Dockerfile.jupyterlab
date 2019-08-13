@@ -1,4 +1,4 @@
-FROM quay.io/esdc/esdc_user_labbase:0.1
+FROM quay.io/esdc/esdc_user_labbase:0.1.0
 
 MAINTAINER dev@brockmann-consult.de
 

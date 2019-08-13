@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - bash set_basemodule_changed.sh
+  - source set_basemodule_changed.sh
   - echo $LABBASE_CHANGED
   - bash docker_build_jupyterlabbase.sh
   - docker build -t quay.io/esdc/esdl_single_user_lab:$TRAVIS_BRANCH -f Dockerfile.jupyterlab .
@@ -14,8 +14,6 @@ before_install:
 script:
   - ls
 
-before_deploy:
-  - LABBASE_CHANGED=$(git diff --exit-code --name-only | grep labbase)
 deploy:
   - provider: script
     script: bash docker_push_jupyterlabbase.sh

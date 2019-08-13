@@ -1,7 +1,7 @@
 FROM jupyter/datascience-notebook:eb149a8c333a
 
 LABEL maintainer=dev@brockmann-consult.de
-LABEL version=0.1
+LABEL version=0.1.0
 
 USER root
 RUN sudo apt-get update && sudo apt-get upgrade -y
