@@ -6,9 +6,6 @@ USER $NB_USER
 
 WORKDIR /home/jovyan/work
 
-USER root
-RUN ln -s /opt/julia-1.1.0/bin/julia /usr/local/bin/julia
-
 USER $NB_USER
 RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
 RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
