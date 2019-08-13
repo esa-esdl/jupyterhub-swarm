@@ -4,9 +4,6 @@ services:
   - docker
 
 before_install:
-  - source set_basemodule_changed.sh
-  - echo $LABBASE_CHANGED
-  - bash docker_build_jupyterlabbase.sh
   - docker build -t quay.io/esdc/esdl_single_user_lab:$TRAVIS_BRANCH -f Dockerfile.jupyterlab .
   - docker run -d quay.io/esdc/esdl_single_user_lab:$TRAVIS_BRANCH 'jupyter lab'
   - docker ps -a
@@ -15,14 +12,8 @@ script:
   - ls
 
 deploy:
-  - provider: script
-    script: bash docker_push_jupyterlabbase.sh
-    skip_cleanup: true
-    on:
-      branch:  dzelge_pythonuserbase
-      condition: $LABBASE_CHANGED = "Dockerfile.jupyterlabbase"
-  - provider: script
-    script: bash docker_push_jupyterlab.sh
-    skip_cleanup: true
-    on:
-      branch:  dzelge_pythonuserbase
+  provider: script
+  script: bash docker_push_jupyterlab.sh
+  skip_cleanup: true
+  on:
+    branch:  dzelge_pythonuserbase
