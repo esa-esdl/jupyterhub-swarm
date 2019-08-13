@@ -1,6 +1,7 @@
 FROM jupyter/datascience-notebook:eb149a8c333a
 
-MAINTAINER dev@brockmann-consult.de
+LABEL maintainer=dev@brockmann-consult.de
+LABEL version=0.1
 
 USER root
 RUN sudo apt-get update && sudo apt-get upgrade -y
@@ -36,4 +37,3 @@ RUN conda install --yes -c pytorch -c bc-dev \
 
 RUN conda list
 
-RUN pip install git+https://github.com/esa-esdl/esdl-core.git

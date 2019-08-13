@@ -1,4 +1,4 @@
-FROM quay.io/esdc/esdc_user_labbase:0.6.1 as baseimage
+FROM quay.io/esdc/esdc_user_labbase:0.1
 
 MAINTAINER dev@brockmann-consult.de
 
@@ -26,5 +26,7 @@ RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
+
+RUN pip install git+https://github.com/esa-esdl/esdl-core.git
 
 RUN cat "export PYTHON_USERBASE=$HOME/work/workspace/.local/python" >> ~/.bashrc
