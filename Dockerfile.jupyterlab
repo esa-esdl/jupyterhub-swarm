@@ -6,21 +6,21 @@ USER $NB_USER
 
 WORKDIR /home/jovyan/work
 
-USER $NB_USER
-RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
-RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
+#USER $NB_USER
+#RUN julia -e 'using Pkg; pkg"rm Gadfly"; pkg"update"; pkg"precompile"; '
+#RUN julia -e 'using Pkg; pkg"add JSON"; pkg"precompile"'
 
-RUN julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot CSV"'
-RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
-RUN julia -e 'using Pkg;pkg"add Zarr"'
-RUN julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
+#RUN julia -e 'using Pkg;pkg"add WebIO@0.6 ColorTypes MultivariateStats IJulia PackageCompiler ProgressMeter GR ECharts PyPlot CSV"'
+#RUN julia -e 'using Pkg;pkg"add https://github.com/esa-esdl/ESDL.jl https://github.com/esa-esdl/ESDLPlots.jl"'
+#RUN julia -e 'using Pkg;pkg"add Zarr"'
+#RUN julia -e 'using Pkg;pkg"add MultivariateAnomalies#master";pkg"precompile"'
 
-ENV ESDL_WORKDIR /home/jovyan/tmp
+#ENV ESDL_WORKDIR /home/jovyan/tmp
 
-USER root
-RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
-RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
+#USER root
+#RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
+#RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
+#RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
 
