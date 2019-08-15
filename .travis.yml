@@ -13,7 +13,7 @@ script:
 
 deploy:
   provider: script
-  script: bash docker_push_jupyterlab.sh
+  script: bash docker-push_jupyterlab.sh
   skip_cleanup: true
   on:
     branch:  dzelge_pythonuserbase
