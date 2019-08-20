@@ -1,0 +1,39 @@
+FROM jupyter/datascience-notebook:eb149a8c333a
+
+LABEL maintainer=dev@brockmann-consult.de
+LABEL version=0.1.0
+
+USER root
+RUN sudo apt-get update && sudo apt-get upgrade -y
+RUN sudo apt-get install -y git unzip apt-utils vim
+
+ADD start.sh /usr/local/bin/start.sh
+
+USER $NB_USER
+
+RUN conda install --yes -c bc-dev \
+    cudatoolkit=9.0 \
+    geopandas \
+    # widgetsnbextension \
+    rasterio \
+    xarray \
+    zarr \
+    gridtools
+
+RUN conda install --yes -c pytorch -c bc-dev \
+    basemap \
+    ffmpeg \
+    netcdf4 \
+    pyproj \
+    regionmask \
+    cartopy
+
+RUN conda install --yes -c pytorch -c bc-dev \
+    pysheds \
+    pytorch \
+    torchvision \
+    tensorflow \
+    s3fs
+
+RUN conda list
+

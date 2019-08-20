@@ -1,43 +1,10 @@
-FROM jupyter/datascience-notebook:eb149a8c333a
+FROM quay.io/esdc/esdc_user_labbase:0.1.0
 
 MAINTAINER dev@brockmann-consult.de
 LABEL version='0.6.1'
 
 USER root
-RUN sudo apt-get update && sudo apt-get upgrade -y
-RUN sudo apt-get install -y git unzip apt-utils vim
 
-ADD start.sh /usr/local/bin/start.sh
-
-USER $NB_USER
-
-RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
-    cudatoolkit=9.0 \
-    geopandas \
-    # widgetsnbextension \
-    rasterio \
-    xarray \
-    zarr \
-    gridtools \
-    basemap \
-    ffmpeg \
-    netcdf4 \
-    pyproj
-
-RUN conda install --yes -c pytorch -c bc-dev -c conda-forge\
-    datashader \
-    regionmask \
-    cartopy \
-    pysheds \
-    pytorch \
-    torchvision \
-    tensorflow \
-    s3fs \
-    r-rgdal \
-    r-rgeos
-
-
-RUN conda list
 RUN pip install git+https://github.com/esa-esdl/esdl-core.git
 
 WORKDIR /home/jovyan/work
