@@ -1,3 +1,11 @@
+## Version 0.6.1
+
+* Creation of Docker Baseimage: jupyter/datascience-notebook:eb149a8c333a
+* Update of jupyterhub and jupyterlab to version 1.0.0
+* Including rgdal and rgeos into dependencies
+* fix julia build. Replaced json package version by removing dependency 
+  Gadfly and explicitly installing latest version of package JSON
+
 ## Version 0.5.2
 
 * Julia - new packages ECharts, PyPlot, ProgressMeter
