@@ -22,7 +22,7 @@ ENV ESDL_WORKDIR /home/jovyan/tmp
 
 RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
 RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('reticulate', ''ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
 
