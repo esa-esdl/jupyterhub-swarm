@@ -20,10 +20,10 @@ RUN julia -e 'using WebIO'
 
 ENV ESDL_WORKDIR /home/jovyan/tmp
 
-USER root
 RUN apt-get -y install libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev
 RUN R -e "install.packages(c('data.table'),repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2','raster','sp','zoo','rgdal','dplyr','vegan','ape','Rtsne','Rcpp','inline'),repos='http://cran.us.r-project.org')"
 
 USER $NB_USER
 
+ENV PYTHON_USERBASE "$HOME/work/workspace/.local/python"
