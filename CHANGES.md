@@ -11,7 +11,7 @@
 ## Version 0.6.0
 
 * Using the data science notebook now
-* Added a Julia that allows to read and write zarrs to an object store
+* Added a Julia package that allows to read and write zarrs to an object store
 
 ## Version 0.5.2
 
