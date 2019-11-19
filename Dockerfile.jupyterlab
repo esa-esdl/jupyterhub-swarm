@@ -1,4 +1,4 @@
-ARG LAB_VERSION=0.6.1
+ARG LAB_VERSION=latest
 FROM quay.io/esdc/esdc_user_labbase:${LAB_VERSION}
 
 MAINTAINER dev@brockmann-consult.de
