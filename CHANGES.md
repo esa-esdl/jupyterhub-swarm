@@ -1,11 +1,17 @@
 ## Version 0.6.1
 
+* Added latest [xcube version](https://github.com/dcs4cop/xcube)
+* Including aws.s3
+
+## Version 0.6.1.dev1
+
 * Creation of Docker Baseimage: jupyter/datascience-notebook:eb149a8c333a to minimise build time
 * Update of jupyterhub and jupyterlab to version 1.0.0
-* Including rgdal, reticulate and rgeos into dependencies
+* Including rgdal, reticulate, aws.s3 and rgeos into dependencies
 * fix julia build. Replaced json package version by removing dependency 
   Gadfly and explicitly installing latest version of package JSON
 * Set PYTHONPATH and PYTHONUSERBASE to $HOME/work/workspace/.local allowing persistent user installs
+
 
 
 ## Version 0.6.0
