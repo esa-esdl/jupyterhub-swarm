@@ -11,16 +11,17 @@ ADD start.sh /usr/local/bin/start.sh
 
 USER $NB_USER
 
-RUN conda install --yes -c bc-dev \
+RUN conda install --yes -c bc-dev -c conda-forge \
     cudatoolkit=9.0 \
     geopandas \
     # widgetsnbextension \
     rasterio \
     xarray \
+    xcube \
     zarr \
     gridtools
 
-RUN conda install --yes -c pytorch -c bc-dev \
+RUN conda install --yes -c conda-forge \
     basemap \
     ffmpeg \
     netcdf4 \
@@ -28,7 +29,7 @@ RUN conda install --yes -c pytorch -c bc-dev \
     regionmask \
     cartopy
 
-RUN conda install --yes -c pytorch -c bc-dev \
+RUN conda install --yes -c pytorch  -c conda-forge \
     pysheds \
     pytorch \
     torchvision \
