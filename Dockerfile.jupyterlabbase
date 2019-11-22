@@ -11,15 +11,13 @@ ADD start.sh /usr/local/bin/start.sh
 
 USER $NB_USER
 
-RUN conda install --yes -c bc-dev -c conda-forge \
+RUN conda install --yes -c conda-forge \
     cudatoolkit=9.0 \
     geopandas \
     # widgetsnbextension \
     rasterio \
     xarray \
-    xcube \
-    zarr \
-    gridtools
+    zarr
 
 RUN conda install --yes -c conda-forge \
     basemap \
@@ -35,6 +33,10 @@ RUN conda install --yes -c pytorch  -c conda-forge \
     torchvision \
     tensorflow \
     s3fs
+
+RUN conda install -c conda-forge xcube >=0.3.0
+RUN conda install -c bcdev gridtools
+
 
 RUN conda list
 
