@@ -1,20 +1,20 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyterhub/jupyterhub-onbuild:1.0.0
+FROM jupyterhub/jupyterhub-onbuild:1.1.0
 
 MAINTAINER info@earthsystemdatalab.net
-LABEL version='0.6.1'
+LABEL version='0.6.2'
 
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 
+RUN apt-get update -y && apt-get install -y git
+RUN pip install git+https://github.com/jupyterhub/jupyterhub
 RUN git clone https://github.com/esa-esdl/SwarmSpawner.git
 WORKDIR SwarmSpawner
-CMD ["source /opt/conda/bin/activate"]
-RUN /opt/conda/bin/python setup.py install
-RUN /opt/conda/bin/pip install oauthenticator==0.7.3 jupyterhub-dummyauthenticator 
+
+RUN pip install . oauthenticator==0.7.3 jupyterhub-dummyauthenticator
 COPY cull_idle_servers.py /srv/jupyterhub
-RUN conda list
 
 # Copy TLS certificate and key
 WORKDIR ..
@@ -28,3 +28,4 @@ RUN chmod 700 /srv/jupyterhub/secrets && \
     chmod 600 /srv/jupyterhub/secrets/*
 
 COPY ./userlist /srv/jupyterhub/userlist
+

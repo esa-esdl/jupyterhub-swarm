@@ -4,7 +4,7 @@
 # Configuration file for JupyterHub
 import os
 import sys
- 
+
 c = get_config()
 
 # We rely on environment variables to configure JupyterHub so that we
@@ -17,9 +17,10 @@ notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
 notebook_image = os.environ['DOCKER_NOTEBOOK_IMAGE']
 notebook_spawn_cmd = os.environ['DOCKER_SPAWN_CMD']
 user_workspaces_dir = os.environ['USER_WORKSPACES_DIR']
-datacube_dir = os.environ['DATACUBE_DIR']
+datacube_v200_dir =os.environ['DATACUBE_V200_DIR']
+datacube_v200_suppl_dir =os.environ['DATACUBE_V200_SUPPL_DIR']
+datacube_v21_dir =os.environ['DATACUBE_V21_DIR']
 sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
-esdl_hub_mode = os.environ['ESDL_HUB_MODE']
 
 c.JupyterHub.spawner_class = 'cassinyspawner.SwarmSpawner'
 
@@ -42,19 +43,32 @@ mounts = [
         'source' : user_workspaces_dir,
         'target' : '/home/esdc'
     },
-    {                                                      
-    	'type' : 'bind',
-    	'source' : datacube_dir,
-    	'target' : notebook_dir + '/datacube',
-	'read_only': True
+    {
+        'type' : 'bind',
+        'source' : datacube_v200_dir,
+        'target' : notebook_dir + '/datacube/ESDCv2.0.0',
+        'read_only': True
+    },
+    {
+        'type' : 'bind',
+        'source' : datacube_v200_suppl_dir,
+        'target' : notebook_dir + '/datacube/ESDCv2.0.0_suppl',
+        'read_only': True
+    },
+    {
+        'type' : 'bind',
+        'source' : datacube_v21_dir,
+        'target' : notebook_dir + '/datacube/ESDCv2.1',
+        'read_only': True
     },
     {
         'type' : 'bind',
         'source' : sample_notebooks_dir,
         'target' : notebook_dir + '/shared-nb',
-	'read_only': True
+        'read_only': True
     }
 ]
+
 c.SwarmSpawner.container_spec = {
     # The command to run inside the service
     'args' : [notebook_spawn_cmd],
@@ -68,8 +82,9 @@ c.SwarmSpawner.container_spec = {
 }
 
 c.SwarmSpawner.resource_spec = {
-	'mem_limit' : int(8 * 1000 * 1000 * 1000),
-	'mem_reservation' : int(4 * 1000 * 1000 * 1000),
+        'mem_limit' : int(32 * 1000 * 1000 * 1000),
+        'mem_reservation' : int(16 * 1000 * 1000 * 1000),
+
 }
 c.SwarmSpawner.start_timeout = 60 * 5
 c.SwarmSpawner.http_timeout = 60 * 2
@@ -80,20 +95,23 @@ c.MappingKernelManager.cull_idle_timeout = 200
 c.NotebookApp.shutdown_no_activity_timeout = 100
 
 # User containers will access hub by container name on the Docker network
-c.JupyterHub.hub_ip = '0.0.0.0'
+# c.JupyterHub.hub_ip = '0.0.0.0'
 
 # TLS config
 c.JupyterHub.port = 443
+c.JupyterHub.ip = "0.0.0.0"
+c.JupyterHub.hub_ip = "0.0.0.0"
 c.JupyterHub.ssl_key = os.environ['SSL_KEY']
 c.JupyterHub.ssl_cert = os.environ['SSL_CERT']
 
 # Authenticate users with GitHub OAuth
 
-if esdl_hub_mode == 'dev':
+if os.environ['JUPYTERHUB_SERVICE_NAME']:
     c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
 else:
     c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
     c.GitHubOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
+
 
 # Persist hub data on volume mounted inside container
 data_dir = os.environ.get('DATA_VOLUME_CONTAINER', '/data')
