@@ -18,7 +18,7 @@ notebook_image = os.environ['DOCKER_NOTEBOOK_IMAGE']
 notebook_spawn_cmd = os.environ['DOCKER_SPAWN_CMD']
 user_workspaces_dir = os.environ['USER_WORKSPACES_DIR']
 datacube_v200_dir =os.environ['DATACUBE_V200_DIR']
-datacube_v200_suppl_dir =os.environ['DATACUBE_V200_SUPPL_DIR']
+datacube_v211_suppl_dir =os.environ['DATACUBE_V211_SUPPL_DIR']
 datacube_v21_dir =os.environ['DATACUBE_V21_DIR']
 datacube_v211_dir =os.environ['DATACUBE_V211_DIR']
 sample_notebooks_dir = os.environ['SAMPLE_NOTEBOOKS_DIR']
@@ -52,8 +52,8 @@ mounts = [
     },
     {
         'type' : 'bind',
-        'source' : datacube_v200_suppl_dir,
-        'target' : notebook_dir + '/datacube/ESDCv2.0.0_suppl',
+        'source' : datacube_v211_suppl_dir,
+        'target' : notebook_dir + '/datacube/ESDCv2.1.1_suppl',
         'read_only': True
     },
     {

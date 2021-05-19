@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyterhub/jupyterhub-onbuild:1.1.0
+FROM jupyterhub/jupyterhub-onbuild:1.0.0
 
 MAINTAINER info@earthsystemdatalab.net
 LABEL version='0.6.2'
@@ -9,7 +9,7 @@ LABEL version='0.6.2'
 ENTRYPOINT [ "/bin/bash", "-c" ]
 
 RUN apt-get update -y && apt-get install -y git
-RUN pip install git+https://github.com/jupyterhub/jupyterhub
+# RUN pip install git+https://github.com/jupyterhub/jupyterhub
 RUN git clone https://github.com/esa-esdl/SwarmSpawner.git
 WORKDIR SwarmSpawner
 
